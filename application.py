@@ -27,7 +27,7 @@ def predict_datapoint():
         ISI = float(request.form.get('ISI'))
         Region = float(request.form.get('Region'))
 
-        new_data_scaled=standard_scaler.transform([[Temperature,RH,Ws,Rain,FFMC,DMC,ISI,Classes,Region]])
+        new_data_scaled=standard_scaler.transform([[Temperature,RH,Ws,Rain,FFMC,DMC,ISI,Region]])
         result=ridge_model.predict(new_data_scaled)
 
         return render_template('home.html',result=result[0])
@@ -36,4 +36,4 @@ def predict_datapoint():
         return render_template('home.html')
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0",debug=True)
